@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm package:chrome
+      - run: pnpm package:firefox
+      - run: pnpm package:edge
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist-chrome/*.zip
+            dist-firefox/*.xpi
+            dist-edge/*.zip
+          generate_release_notes: true

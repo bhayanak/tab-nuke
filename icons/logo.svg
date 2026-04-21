@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fb923c"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="60" fill="#1f2937"/>
+  <circle cx="64" cy="64" r="52" fill="none" stroke="url(#g)" stroke-width="4"/>
+  <!-- Trefoil / radiation symbol -->
+  <circle cx="64" cy="64" r="8" fill="url(#g)"/>
+  <path d="M64 56 Q76 32 92 44 Q84 56 72 60 Z" fill="url(#g)"/>
+  <path d="M60 68 Q40 56 44 36 Q56 44 60 56 Z" fill="url(#g)" transform="rotate(120 64 64)"/>
+  <path d="M68 68 Q88 56 84 36 Q72 44 68 56 Z" fill="url(#g)" transform="rotate(240 64 64)"/>
+  <!-- Tab shape -->
+  <rect x="38" y="82" width="52" height="6" rx="3" fill="url(#g)" opacity="0.8"/>
+  <rect x="42" y="76" width="20" height="8" rx="2" fill="url(#g)" opacity="0.6"/>
+</svg>
