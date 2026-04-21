@@ -20,7 +20,8 @@ export async function saveSession(name: string, tags: string[] = []): Promise<Ta
       title: tab.title ?? 'Untitled',
       favIconUrl: tab.favIconUrl,
       scrollPosition: { x: 0, y: 0 },
-      groupName: tab.groupId !== undefined && tab.groupId >= 0 ? groups.get(tab.groupId) : undefined,
+      groupName:
+        tab.groupId !== undefined && tab.groupId >= 0 ? groups.get(tab.groupId) : undefined,
     }));
 
   const session: TabSession = {

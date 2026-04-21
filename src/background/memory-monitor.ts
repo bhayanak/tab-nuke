@@ -32,7 +32,9 @@ export async function updateMemoryStats(): Promise<MemoryStats> {
   stats = {
     ...stats,
     currentUsageMB: estimatedUsage,
-    totalSavedMB: stats.totalSavedMB + (estimatedSavings > stats.totalSavedMB ? estimatedSavings - stats.totalSavedMB : 0),
+    totalSavedMB:
+      stats.totalSavedMB +
+      (estimatedSavings > stats.totalSavedMB ? estimatedSavings - stats.totalSavedMB : 0),
     suspendedCount,
     activeCount,
     peakUsageMB: Math.max(stats.peakUsageMB, estimatedUsage),

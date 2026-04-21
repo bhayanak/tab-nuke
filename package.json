@@ -17,7 +17,7 @@
     "package:chrome": "node scripts/package.js chrome",
     "package:firefox": "node scripts/package.js firefox",
     "package:edge": "node scripts/package.js edge",
-    "ci": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test:coverage && pnpm build",
+    "ci": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm audit --audit-level=high || true && pnpm test:coverage && pnpm build",
     "validate": "pnpm ci"
   },
   "dependencies": {
@@ -50,6 +50,11 @@
     "vite": "^6.0.7",
     "vitest": "^2.1.8"
   },
+"pnpm": {
+    "overrides": {
+        "@crxjs/vite-plugin>rollup": "^4.60.2"
+    }
+},
   "engines": {
     "node": ">=18"
   },

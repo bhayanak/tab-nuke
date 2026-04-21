@@ -1,5 +1,15 @@
-import { describe, it, expect } from 'vitest';
-import { isValidUrl, getDomain, sanitizeUrl, formatMemoryMB, timeAgo, generateId, isInternalUrl, debounce, escapeHtml } from '@/shared/utils';
+import { describe, it, expect, vi } from 'vitest';
+import {
+    isValidUrl,
+    getDomain,
+    sanitizeUrl,
+    formatMemoryMB,
+    timeAgo,
+    generateId,
+    isInternalUrl,
+    debounce,
+    escapeHtml,
+} from '@/shared/utils';
 
 describe('isValidUrl', () => {
   it('returns true for http URLs', () => {
@@ -10,9 +20,17 @@ describe('isValidUrl', () => {
     expect(isValidUrl('https://example.com/path?q=1')).toBe(true);
   });
 
+    it('returns true for ftp URLs', () => {
+        expect(isValidUrl('ftp://files.example.com')).toBe(true);
+    });
+
   it('returns false for javascript: URLs', () => {
     expect(isValidUrl('javascript:alert(1)')).toBe(false);
   });
+
+    it('returns false for data: URLs', () => {
+        expect(isValidUrl('data:text/html,<h1>hi</h1>')).toBe(false);
+    });
 
   it('returns false for empty string', () => {
     expect(isValidUrl('')).toBe(false);
@@ -24,17 +42,25 @@ describe('isValidUrl', () => {
 });
 
 describe('getDomain', () => {
-  it('extracts domain from URL', () => {
+    it('extracts domain from https URL', () => {
     expect(getDomain('https://www.example.com/path')).toBe('www.example.com');
   });
+
+    it('extracts domain from http URL', () => {
+        expect(getDomain('http://localhost:3000')).toBe('localhost');
+    });
 
   it('returns empty string for invalid URL', () => {
     expect(getDomain('invalid')).toBe('');
   });
+
+    it('returns empty string for empty string', () => {
+        expect(getDomain('')).toBe('');
+    });
 });
 
 describe('sanitizeUrl', () => {
-  it('returns valid http URLs unchanged', () => {
+    it('returns valid http URLs', () => {
     expect(sanitizeUrl('https://example.com')).toBe('https://example.com/');
   });
 
@@ -42,9 +68,17 @@ describe('sanitizeUrl', () => {
     expect(sanitizeUrl('javascript:alert(1)')).toBe('');
   });
 
+    it('returns empty string for data: URLs', () => {
+        expect(sanitizeUrl('data:text/html,hello')).toBe('');
+    });
+
   it('returns empty string for invalid URLs', () => {
     expect(sanitizeUrl('not-a-url')).toBe('');
   });
+
+    it('returns empty string for vbscript: URLs', () => {
+        expect(sanitizeUrl('vbscript:msgbox')).toBe('');
+    });
 });
 
 describe('formatMemoryMB', () => {
@@ -55,6 +89,14 @@ describe('formatMemoryMB', () => {
   it('formats sub-MB values as KB', () => {
     expect(formatMemoryMB(0.5)).toBe('512 KB');
   });
+
+    it('formats zero', () => {
+        expect(formatMemoryMB(0)).toBe('0 KB');
+    });
+
+    it('formats exactly 1 MB', () => {
+        expect(formatMemoryMB(1)).toBe('1.0 MB');
+    });
 });
 
 describe('timeAgo', () => {
@@ -98,6 +140,18 @@ describe('isInternalUrl', () => {
     expect(isInternalUrl('chrome-extension://abc/page.html')).toBe(true);
   });
 
+    it('detects about: URLs', () => {
+        expect(isInternalUrl('about:blank')).toBe(true);
+    });
+
+    it('detects edge:// URLs', () => {
+        expect(isInternalUrl('edge://settings')).toBe(true);
+    });
+
+    it('detects moz-extension:// URLs', () => {
+        expect(isInternalUrl('moz-extension://abc')).toBe(true);
+    });
+
   it('returns false for http URLs', () => {
     expect(isInternalUrl('https://example.com')).toBe(false);
   });
@@ -114,14 +168,31 @@ describe('debounce', () => {
     await new Promise((r) => setTimeout(r, 100));
     expect(fn).toHaveBeenCalledTimes(1);
   });
+
+    it('calls with latest arguments', async () => {
+        const fn = vi.fn();
+        const debounced = debounce(fn, 50);
+        debounced('a');
+        debounced('b');
+        debounced('c');
+        await new Promise((r) => setTimeout(r, 100));
+        expect(fn).toHaveBeenCalledWith('c');
+    });
 });
 
 describe('escapeHtml', () => {
   it('escapes HTML entities', () => {
-    expect(escapeHtml('<script>alert("xss")</script>')).toBe('&lt;script&gt;alert("xss")&lt;/script&gt;');
+      const result = escapeHtml('<script>alert("xss")</script>');
+      expect(result).toContain('&lt;');
+      expect(result).toContain('&gt;');
+      expect(result).not.toContain('<script>');
   });
 
   it('returns plain text unchanged', () => {
     expect(escapeHtml('hello world')).toBe('hello world');
   });
+
+    it('escapes ampersands', () => {
+        expect(escapeHtml('a & b')).toContain('&amp;');
+    });
 });

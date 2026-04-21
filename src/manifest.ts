@@ -4,7 +4,8 @@ const manifest: ManifestV3Export = {
   manifest_version: 3,
   name: 'Tab Nuke',
   version: '1.0.0',
-  description: 'Smart tab manager: auto-suspend inactive tabs, save sessions, focus mode, memory dashboard.',
+  description:
+    'Smart tab manager: auto-suspend inactive tabs, save sessions, focus mode, memory dashboard.',
   permissions: ['tabs', 'tabGroups', 'storage', 'alarms', 'scripting'],
   host_permissions: ['<all_urls>'],
   background: {

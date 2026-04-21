@@ -14,10 +14,7 @@ export default function App() {
 
   async function loadData() {
     try {
-      const [memStats, allSessions] = await Promise.all([
-        api.getMemoryStats(),
-        api.getSessions(),
-      ]);
+      const [memStats, allSessions] = await Promise.all([api.getMemoryStats(), api.getSessions()]);
       setStats(memStats);
       setSessions(allSessions);
     } catch (e) {
@@ -38,9 +35,7 @@ export default function App() {
         <button
           onClick={() => setView('analytics')}
           className={`flex-1 py-2 text-sm font-medium ${
-            view === 'analytics'
-              ? 'text-orange-600 border-b-2 border-orange-500'
-              : 'text-gray-500'
+            view === 'analytics' ? 'text-orange-600 border-b-2 border-orange-500' : 'text-gray-500'
           }`}
         >
           📊 Analytics
@@ -48,9 +43,7 @@ export default function App() {
         <button
           onClick={() => setView('sessions')}
           className={`flex-1 py-2 text-sm font-medium ${
-            view === 'sessions'
-              ? 'text-orange-600 border-b-2 border-orange-500'
-              : 'text-gray-500'
+            view === 'sessions' ? 'text-orange-600 border-b-2 border-orange-500' : 'text-gray-500'
           }`}
         >
           💾 Sessions
@@ -83,12 +76,15 @@ function Analytics({ stats }: { stats: MemoryStats }) {
         <div>
           <h3 className="text-sm font-semibold text-gray-500 mb-2">Savings History</h3>
           <div className="space-y-1">
-            {stats.savingsHistory.slice(-7).reverse().map((entry) => (
-              <div key={entry.date} className="flex justify-between text-sm">
-                <span className="text-gray-500">{entry.date}</span>
-                <span className="font-medium">{formatMemoryMB(entry.savedMB)}</span>
-              </div>
-            ))}
+            {stats.savingsHistory
+              .slice(-7)
+              .reverse()
+              .map((entry) => (
+                <div key={entry.date} className="flex justify-between text-sm">
+                  <span className="text-gray-500">{entry.date}</span>
+                  <span className="font-medium">{formatMemoryMB(entry.savedMB)}</span>
+                </div>
+              ))}
           </div>
         </div>
       )}

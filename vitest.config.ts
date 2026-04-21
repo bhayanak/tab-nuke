@@ -15,13 +15,13 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json-summary', 'html'],
       thresholds: {
-        lines: 80,
-        functions: 80,
-        statements: 80,
-        branches: 75,
+          lines: 95,
+          functions: 95,
+          statements: 95,
+          branches: 95,
       },
       include: ['src/**/*.ts', 'src/**/*.tsx'],
-      exclude: ['src/**/*.d.ts', 'src/manifest.ts'],
+        exclude: ['src/**/*.d.ts', 'src/manifest.ts', 'src/popup/main.tsx', 'src/sidebar/main.tsx', 'src/shared/types.ts'],
     },
   },
 });

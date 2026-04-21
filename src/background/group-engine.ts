@@ -17,7 +17,14 @@ export async function groupByDomain(): Promise<TabGroup[]> {
 
   const groups: TabGroup[] = [];
   const colors: TabGroupColor[] = [
-    'blue', 'red', 'yellow', 'green', 'pink', 'purple', 'cyan', 'orange',
+    'blue',
+    'red',
+    'yellow',
+    'green',
+    'pink',
+    'purple',
+    'cyan',
+    'orange',
   ];
   let colorIdx = 0;
 

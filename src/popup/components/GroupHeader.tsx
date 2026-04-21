@@ -14,7 +14,10 @@ export function GroupHeader({ name, count, collapsed, onToggle }: GroupHeaderPro
       onClick={onToggle}
       className="flex items-center gap-2 w-full px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750"
     >
-      <span className="transition-transform" style={{ transform: collapsed ? '' : 'rotate(90deg)' }}>
+      <span
+        className="transition-transform"
+        style={{ transform: collapsed ? '' : 'rotate(90deg)' }}
+      >
         ▶
       </span>
       <span className="flex-1 text-left">{name}</span>

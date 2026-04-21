@@ -53,9 +53,7 @@ export function Sessions() {
 
       {/* Sessions List */}
       {sessions.length === 0 ? (
-        <div className="px-4 py-8 text-center text-sm text-gray-400">
-          No saved sessions yet
-        </div>
+        <div className="px-4 py-8 text-center text-sm text-gray-400">No saved sessions yet</div>
       ) : (
         <div>
           {sessions.map((session) => (

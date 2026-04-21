@@ -14,8 +14,7 @@ export function Groups() {
       group.push(tab);
       map.set(domain, group);
     }
-    return Array.from(map.entries())
-      .sort((a, b) => b[1].length - a[1].length);
+    return Array.from(map.entries()).sort((a, b) => b[1].length - a[1].length);
   }, [tabs]);
 
   async function handleGroupByDomain() {
@@ -57,9 +56,7 @@ export function Groups() {
                 className="flex items-center gap-2 px-6 py-1.5 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer"
                 onClick={() => chrome.tabs.update(tab.id, { active: true })}
               >
-                {tab.favIconUrl && (
-                  <img src={tab.favIconUrl} alt="" className="w-4 h-4 rounded" />
-                )}
+                {tab.favIconUrl && <img src={tab.favIconUrl} alt="" className="w-4 h-4 rounded" />}
                 <span className="truncate">{tab.title}</span>
               </div>
             ))}

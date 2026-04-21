@@ -13,9 +13,7 @@ export function TabList({ onRefresh }: TabListProps) {
   const filteredTabs = useMemo(() => {
     if (!searchQuery.trim()) return tabs;
     const q = searchQuery.toLowerCase();
-    return tabs.filter(
-      (t) => t.title.toLowerCase().includes(q) || t.url.toLowerCase().includes(q),
-    );
+    return tabs.filter((t) => t.title.toLowerCase().includes(q) || t.url.toLowerCase().includes(q));
   }, [tabs, searchQuery]);
 
   async function handleSuspend(tabId: number) {
