@@ -38,6 +38,11 @@ if (target === 'firefox') {
       strict_min_version: '109.0',
     },
   };
+  // Firefox uses background.scripts instead of background.service_worker
+  if (manifest.background?.service_worker) {
+    manifest.background.scripts = [manifest.background.service_worker];
+    delete manifest.background.service_worker;
+  }
   // Firefox uses sidebar_action instead of side_panel
   if (manifest.side_panel) {
     manifest.sidebar_action = {
