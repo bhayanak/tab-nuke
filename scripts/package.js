@@ -36,6 +36,9 @@ if (target === 'firefox') {
     gecko: {
       id: 'tab-nuke@extension',
       strict_min_version: '109.0',
+      data_collection_permissions: {
+        required: ['none'],
+      },
     },
   };
   // Firefox uses background.scripts instead of background.service_worker
