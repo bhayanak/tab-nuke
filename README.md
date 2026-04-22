@@ -87,55 +87,18 @@ Open the extension popup → Settings tab to configure:
 - Audio tab protection
 - Form data protection
 
-## Development
+## Screens
+## Screens
+<p align="center">
+  <img src="docs/screens/tabs.png" width="400" alt="Screenshot 1" />
+  <img src="docs/screens/sessions.png" width="400" alt="Screenshot 2" />
+</p>
 
-### Prerequisites
+<p align="center">
+  <img src="docs/screens/groups.png" width="400" alt="Screenshot 3" />
+  <img src="docs/screens/settings.png" width="400" alt="Screenshot 4" />
+</p>
 
-- Node.js 18+
-- pnpm 9+
-
-### Setup
-
-```bash
-git clone https://github.com/tab-nuke/tab-nuke.git
-cd tab-nuke
-pnpm install
-```
-
-### Commands
-
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start dev server with hot reload |
-| `pnpm build` | Production build |
-| `pnpm typecheck` | TypeScript type checking |
-| `pnpm lint` | ESLint with security rules |
-| `pnpm test` | Run unit tests |
-| `pnpm test:coverage` | Run tests with coverage |
-| `pnpm package:chrome` | Package for Chrome |
-| `pnpm package:firefox` | Package for Firefox |
-| `pnpm package:edge` | Package for Edge |
-
-### Loading in Chrome for Development
-
-1. Run `pnpm dev`
-2. Go to `chrome://extensions`
-3. Enable "Developer mode"
-4. Click "Load unpacked"
-5. Select the `dist/` folder
-6. The extension auto-reloads on file changes
-
-## Architecture
-
-```
-src/
-├── background/          # Service worker: tab watcher, suspend engine, sessions
-├── content/             # Content script: scroll position tracking
-├── popup/               # React popup: tab list, sessions, groups, settings
-├── sidebar/             # React sidebar: analytics, session browser
-├── suspended/           # Lightweight suspended tab placeholder
-└── shared/              # Types, constants, utilities, Zustand store
-```
 
 ## Security
 
