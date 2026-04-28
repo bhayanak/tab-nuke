@@ -10,9 +10,13 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/tab-nuke/tab-nuke/actions"><img src="https://img.shields.io/github/actions/workflow/status/tab-nuke/tab-nuke/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bhayanak/tab-nuke/actions"><img src="https://img.shields.io/github/actions/workflow/status/bhayanak/tab-nuke/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" /></a>
   <img src="https://img.shields.io/badge/manifest-v3-green.svg" alt="Manifest V3" />
+  <img src="https://img.shields.io/badge/coverage-96%25-brightgreen" alt="Coverage 97%" />
+  <img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen" alt="Node >= 18" />
+  <img src="https://img.shields.io/badge/chrome-116%2B-yellow" alt="Chrome 116+" />
+  <img src="https://img.shields.io/badge/firefox-109%2B-orange" alt="Firefox 109+" />
 </p>
 
 ---
